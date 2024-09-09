@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&display=swap" rel="stylesheet">
+    <title>Weather App</title>
+</head>
+<body>
+    <div class="weather-app">
+        <div class="search">
+            <input id="placeholder_tag" type="text" placeholder="Search for city">
+            <div class="temp-toggle">
+                <span>°C</span>
+                <div class="slider" onclick="toggleTemperature()">
+                    <div class="slider-circle"></div>
+                </div>
+                <span>°F</span>
+            </div>
+        </div>
+        <div class="container">
+            <img id="partiallyCloudy" src="static/partiallyCloudy.png">
+            <div class="current-weather">
+                <h1 id="location">Philadelphia</h1>
+                <p>22°C Feels Like 21°C</p>
+                <p>SUNNY AND PARTIALLY CLOUDY</p>
+            </div>
+        </div>
+        
+        <div class="hourly-forecast">
+            <div class="time-slot">
+                <div style="font-weight: bold;">Now</div>
+                <img src="static/partiallyCloudy.png" class="weather-icon">
+                <div>22°</div>
+            </div>
+            <div class="time-slot">
+                <div style="font-weight: bold;">3</div>
+                <img src="static/partiallyCloudy.png" class="weather-icon">
+                <div>21°</div>
+            </div>
+            <div class="time-slot">
+                <div style="font-weight: bold;">4</div>
+                <img src="static/sunny.jpg" class="weather-icon">
+                <div>19°</div>
+            </div>
+            <div class="time-slot">
+                <div style="font-weight: bold;">5</div>
+                <img src="static/sunny.jpg" class="weather-icon">
+                <div>18°</div>
+            </div>
+            <div class="time-slot">
+                <div style="font-weight: bold;">6:27</div>
+                <img src="static/sunset.jpg" class="weather-icon">
+                <div>17°</div>
+            </div>
+            <div class="time-slot">
+                <div style="font-weight: bold;">7</div>
+                <img src="static/rainy.jpg" class="weather-icon">
+                <div>15°</div>
+            </div>
+            <div class="time-slot">
+                <div style="font-weight: bold;">8</div>
+                <img src="static/moonCloudy.jpg" class="weather-icon">
+                <div>13°</div>
+            </div>
+            <div></div><div></div><div></div><div></div><div style="font-weight: bold;">Sunset</div><div></div><div></div> 
+        </div>
+
+        <div class="details">
+            <div class="detail-item">
+                <div>UV Index</div>
+                <div style="font-weight: bold;">High</div>
+                <img class="uv-index" src="static/uv-index.jpg" class="weather-icon">
+            </div>
+            <div class="detail-item">
+                <div>Precipitation</div>
+                <div style="font-weight: bold;">54%</div>
+            </div>
+            <div class="detail-item">
+                <div>Wind</div>
+                <div style="font-weight: bold;">10 MPH</div>
+            </div>
+        </div>
+        
+        <div class="forecast">
+            <div class="forecast-title">3 Day Forecast</div>
+            <div class="forecast-row">
+                <div class="days">Wednesday</div>
+                <img src="static/cloudy.jpg" alt="Cloudy Weather Icon" class="weather-icon-forecast">
+                <div class="range">High: 22° Low: 17°</div>
+            </div>
+            <div class="forecast-row">
+                <div class="days">Thursday</div>
+                <img src="static/rainy.jpg" alt="Sunny Weather Icon" class="weather-icon-forecast">
+                <div class="range">High: 16° Low: 12°</div>
+            </div>
+            <div class="forecast-row">
+                <div class="days">Friday</div>
+                <img src="static/sunny.jpg" alt="Rainy Weather Icon" class="weather-icon-forecast">
+                <div class="range">High: 27° Low: 19°</div>
+            </div>
+        </div>
+                
+    </div>
+
+    <script>
+        function toggleTemperature() {
+            const slider = document.querySelector('.slider');
+            slider.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
