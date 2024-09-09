@@ -20,10 +20,10 @@
             </div>
         </div>
         <div class="container">
-            <img id="partiallyCloudy" src="static/partiallyCloudy.png">
+            <img id="partiallyCloudy" src="static/partiallyCloudy.jpg">
             <div class="current-weather">
                 <h1 id="location">Philadelphia</h1>
-                <p>22°C Feels Like 21°C</p>
+                <p id="weather-temp">22°C Feels Like 21°C</p>
                 <p>SUNNY AND PARTIALLY CLOUDY</p>
             </div>
         </div>
@@ -31,38 +31,38 @@
         <div class="hourly-forecast">
             <div class="time-slot">
                 <div style="font-weight: bold;">Now</div>
-                <img src="static/partiallyCloudy.png" class="weather-icon">
-                <div>22°</div>
+                <img src="static/partiallyCloudy.jpg" class="weather-icon">
+                <div class="temp" data-temp="22">22°</div>
             </div>
             <div class="time-slot">
                 <div style="font-weight: bold;">3</div>
-                <img src="static/partiallyCloudy.png" class="weather-icon">
-                <div>21°</div>
+                <img src="static/partiallyCloudy.jpg" class="weather-icon">
+                <div class="temp" data-temp="21">21°</div>
             </div>
             <div class="time-slot">
                 <div style="font-weight: bold;">4</div>
                 <img src="static/sunny.jpg" class="weather-icon">
-                <div>19°</div>
+                <div class="temp" data-temp="19">19°</div>
             </div>
             <div class="time-slot">
                 <div style="font-weight: bold;">5</div>
                 <img src="static/sunny.jpg" class="weather-icon">
-                <div>18°</div>
+                <div class="temp" data-temp="18">18°</div>
             </div>
             <div class="time-slot">
                 <div style="font-weight: bold;">6:27</div>
                 <img src="static/sunset.jpg" class="weather-icon">
-                <div>17°</div>
+                <div class="temp" data-temp="17">17°</div>
             </div>
             <div class="time-slot">
                 <div style="font-weight: bold;">7</div>
                 <img src="static/rainy.jpg" class="weather-icon">
-                <div>15°</div>
+                <div class="temp" data-temp="15">15°</div>
             </div>
             <div class="time-slot">
                 <div style="font-weight: bold;">8</div>
-                <img src="static/moonCloudy.jpg" class="weather-icon">
-                <div>13°</div>
+                <img id="moonCloudy" src="static/moonCloudy.jpg" class="weather-icon">
+                <div class="temp" data-temp="13">13°</div>
             </div>
             <div></div><div></div><div></div><div></div><div style="font-weight: bold;">Sunset</div><div></div><div></div> 
         </div>
@@ -88,27 +88,71 @@
             <div class="forecast-row">
                 <div class="days">Wednesday</div>
                 <img src="static/cloudy.jpg" alt="Cloudy Weather Icon" class="weather-icon-forecast">
-                <div class="range">High: 22° Low: 17°</div>
+                <div class="range" data-temp-high="22" data-temp-low="17">High: 22° Low: 17°</div>
             </div>
             <div class="forecast-row">
                 <div class="days">Thursday</div>
                 <img src="static/rainy.jpg" alt="Sunny Weather Icon" class="weather-icon-forecast">
-                <div class="range">High: 16° Low: 12°</div>
+                <div class="range" data-temp-high="16" data-temp-low="12">High: 16° Low: 12°</div>
             </div>
             <div class="forecast-row">
                 <div class="days">Friday</div>
                 <img src="static/sunny.jpg" alt="Rainy Weather Icon" class="weather-icon-forecast">
-                <div class="range">High: 27° Low: 19°</div>
+                <div class="range" data-temp-high="27" data-temp-low="19">High: 27° Low: 19°</div>
             </div>
         </div>
                 
     </div>
 
     <script>
-        function toggleTemperature() {
+        document.addEventListener('DOMContentLoaded', function() {
             const slider = document.querySelector('.slider');
-            slider.classList.toggle('active');
-        }
-    </script>
+            const weatherTempP = document.getElementById('weather-temp');
+        
+            slider.addEventListener('click', function() {
+                // Toggle active class
+                slider.classList.toggle('active');
+                convertTemperatures();
+            });
+        
+            function convertTemperatures() {
+                // Convert temperatures in weather paragraph
+                let weatherText = weatherTempP.textContent;
+                if (slider.classList.contains('active')) {
+                    weatherText = weatherText.replace(/(\d+)°C/g, function(match, tempC) {
+                        return `${Math.round(parseInt(tempC) * 9 / 5 + 32)}°F`;
+                    });
+                } else {
+                    weatherText = weatherText.replace(/(\d+)°F/g, function(match, tempF) {
+                        return `${Math.round((parseInt(tempF) - 32) * 5 / 9)}°C`;
+                    });
+                }
+                weatherTempP.textContent = weatherText;
+        
+                // Handle simple temperatures with single value
+                const temps = document.querySelectorAll('.temp');
+                temps.forEach(temp => {
+                    let originalCelsius = parseInt(temp.getAttribute('data-temp'));
+                    if (slider.classList.contains('active')) {
+                        temp.textContent = `${Math.round(originalCelsius * 9 / 5 + 32)}°`;
+                    } else {
+                        temp.textContent = `${originalCelsius}°`;
+                    }
+                });
+        
+                // Handle temperature ranges
+                const ranges = document.querySelectorAll('.range');
+                ranges.forEach(range => {
+                    let highCelsius = parseInt(range.getAttribute('data-temp-high'));
+                    let lowCelsius = parseInt(range.getAttribute('data-temp-low'));
+                    if (slider.classList.contains('active')) {
+                        range.textContent = `High: ${Math.round(highCelsius * 9 / 5 + 32)}° Low: ${Math.round(lowCelsius * 9 / 5 + 32)}°`;
+                    } else {
+                        range.textContent = `High: ${highCelsius}° Low: ${lowCelsius}°`;
+                    }
+                });
+            }
+        });
+        </script>        
 </body>
 </html>

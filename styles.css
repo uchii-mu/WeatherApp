@@ -217,6 +217,10 @@ body, html {
     width: 150px;
 }
 
+#moonCloudy{
+    height: 40px;
+}
+
 /* Styling of UV Index, precipitation and wind */
 .details {
     display: grid;
