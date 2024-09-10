@@ -121,6 +121,7 @@
                 // Convert temperatures in weather paragraph
                 let weatherText = weatherTempP.textContent;
                 if (slider.classList.contains('active')) {
+                    // Parse out the integer value from current temperature using regex
                     weatherText = weatherText.replace(/(\d+)°C/g, function(match, tempC) {
                         return `${Math.round(parseInt(tempC) * 9 / 5 + 32)}°F`;
                     });
@@ -131,7 +132,7 @@
                 }
                 weatherTempP.textContent = weatherText;
         
-                // Handle simple temperatures with single value
+                // Handle simple temperatures in hourly breakdown
                 const temps = document.querySelectorAll('.temp');
                 temps.forEach(temp => {
                     let originalCelsius = parseInt(temp.getAttribute('data-temp'));
@@ -142,7 +143,7 @@
                     }
                 });
         
-                // Handle temperature ranges
+                // Handle temperature ranges in 3-day forecast
                 const ranges = document.querySelectorAll('.range');
                 ranges.forEach(range => {
                     let highCelsius = parseInt(range.getAttribute('data-temp-high'));

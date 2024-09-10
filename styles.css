@@ -47,7 +47,7 @@ body, html {
     display: flex;
     flex-direction: column; /* Stacks children vertically */
     align-items: center; /* Aligns text to the start of the flex item (left-aligned text) */
-    padding: 10px; /* Optional: Adds some padding around the content */
+    padding: 10px; 
     width: 300px;
 
 }
@@ -81,13 +81,12 @@ body, html {
 .weather-icon {
     width: 40px; /* Set the width of the image */
     height: auto; /* Maintain aspect ratio */
-    margin: 3px 0; /* Space above and below the image */
+    margin: 3px 0; /* Space above and below the image at 3px, left and right 0px */
 }
 
 .time-slot > div {
     margin-bottom: 5px; /* Spacing between elements in the time-slot */
 }
-
 
 .details {
     grid-template-columns: repeat(3, 1fr);
@@ -101,31 +100,6 @@ body, html {
     padding: 10px;
     border-radius: 10px;
 }
-
-/* .forecast-title{
-    grid-column: 1 / -1; 
-    margin-bottom: 5px; 
-    padding-bottom: 5px;
-    border-bottom: 3px dotted purple; 
-    text-align: end;
-}
-
-.forecast div:nth-child(odd) {
-    text-align: left;
-    font-weight: bold;
-}
-
-.forecast div:nth-child(even) {
-    text-align: right;
-}
-
-.forecast > div:not(.forecast-title) {
-    padding-top: 10px; 
-    padding-bottom: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
-    text-align: left;
-} */
 
 .forecast-title {
     grid-column: 1 / -1; /* Spans full width */
@@ -144,7 +118,7 @@ body, html {
 }
 
 .weather-icon-forecast {
-    width: 30px; /* Adjust size accordingly */
+    width: 30px; 
     height: auto; /* Maintain aspect ratio */
     justify-self: center; /* Center the image in its grid column */
 }
@@ -168,6 +142,7 @@ body, html {
     overflow: hidden;  /* Prevents overflow content from being visible */
     text-overflow: ellipsis;  /* Adds an ellipsis if the content overflows */
 }
+
 /* Toggle slider for temp */
 .temp-toggle {
     display: flex;
@@ -184,7 +159,7 @@ body, html {
     border-radius: 10px;
     position: relative;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease; /* Slow slider transition*/
 }
 
 .slider-circle {
@@ -221,10 +196,10 @@ body, html {
     height: 40px;
 }
 
-/* Styling of UV Index, precipitation and wind */
+/* Styling of UV Index, Precipitation and Wind */
 .details {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Divides the .details container into three columns */
+    grid-template-columns: repeat(3, 1fr); /* Divides the container into three columns */
     gap: 5px; /* Sets the spacing between each grid item */
 }
 
@@ -233,6 +208,6 @@ body, html {
     grid-template-rows: auto auto; /* Each item will have two rows */
     border: 3px solid black; /* Solid black border around each item */
     text-align: center; /* Centers text horizontally */
-    padding: 5px; /* Padding inside each grid item for better text spacing */
+    padding: 5px; 
     border-radius: 10px;
 }
